@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { Dispatch  } from 'redux'
 import { IApplicationState } from 'src/store'
 import { ping } from "src/store/ping/actions";
-// import { PingActionTypes } from 'src/store/ping/types';
+import { PingIt } from 'src/store/ping/types';
 // Props passed from mapStateToProps
 interface IStateProps {
     ping: boolean
 }
 
 interface IDispatchProps {
-    pingIt(): any
+    pingIt(): PingIt;
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
