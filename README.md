@@ -46,7 +46,7 @@ const initialState: ISampleState = {
 
 const reducer: Reducer<ISampleState> = (state = initialState, action: SampleActionType) => {
   switch (action.type) {
-    case getType(PingActions.sampleAction): {
+    case getType(SampleActions.sampleAction): {
       return { ...state, text: action.payload }
     }
     default: {
@@ -77,8 +77,8 @@ import * as React from "react";
 import { connect } from 'react-redux'
 import { Dispatch  } from 'redux'
 import { IApplicationState } from 'src/store'
-import { SampleActions } from "src/store/ping/actions";
-import { ISampleState } from "src/store/ping/types";
+import { SampleActions } from "src/store/sample/actions";
+import { ISampleState } from "src/store/sample/types";
 
 interface IStateProps {
     text: ISampleState["text"];
@@ -89,7 +89,7 @@ interface IDispatchProps {
 }
 
 const mapStateToProps = (state: IApplicationState): IStateProps => ({
-    text: state.ping.text,
+    text: state.sample.text,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): IDispatchProps => ({
@@ -119,4 +119,20 @@ class SampleComponent extends React.Component<Props > {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SampleComponent);
+```
+# Root Reducer
+```js
+// ./src/store/index.ts
+
+import { combineReducers } from 'redux'
+import { exampleReducer } from './example/reducers'
+import { IExampleState } from './example/types'
+
+export interface IApplicationState {
+  example: IExampleState
+}
+
+export const rootReducer = combineReducers<IApplicationState>({
+  example: exampleReducer,
+})
 ```
