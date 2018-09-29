@@ -1,14 +1,9 @@
 import { ActionType } from 'typesafe-actions';
+import PingActions from './actions';
 
 export interface IPingState {
     readonly ping: boolean
+    readonly text: string
 }
 
-export const enum PingActionTypes {
-    PING = '@@ping/PING',
-}
-
-
-import * as PingActions from './actions';
-
-export type PingIt = ActionType<typeof PingActions.ping>;
+export type PingActionType = ActionType<typeof PingActions>;

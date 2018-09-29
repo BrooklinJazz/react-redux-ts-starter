@@ -1,4 +1,15 @@
-import { action } from 'typesafe-actions'
-import { PingActionTypes } from './types'
+import { createAction } from 'typesafe-actions'
 
-export const ping = () => action(PingActionTypes.PING)
+const TOGGLE = '@@ping/TOGGLE'
+const TEXT = '@@ping/TEXT'
+
+export const PingActions = {
+    textPing: createAction(TEXT, resolve => {
+        return (text: string) => resolve(text);
+    }),
+    togglePing: createAction(TOGGLE, resolve => {
+        return () => resolve();
+    }),
+}
+
+export default PingActions
